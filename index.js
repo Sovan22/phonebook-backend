@@ -10,9 +10,9 @@ const morgan = require('morgan')
 morgan.token('type', function (req) { return req.headers['content-type'] })
 app.use(express.json())
 
-morgan.token('reqbody', function (req) { 
-  if(req.method == 'POST')return JSON.stringify(req.body)
-  else return null 
+morgan.token('reqbody', function (req) {
+  if(req.method === 'POST')return JSON.stringify(req.body)
+  else return null
 })
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :reqbody'))
@@ -29,26 +29,26 @@ const errorHandler = (error, request, response, next) => {
   next(error)
 }
 
-// let persons = 
+// let persons =
 // [
-//     { 
+//     {
 //       "id": "1",
-//       "name": "Arto Hellas", 
+//       "name": "Arto Hellas",
 //       "number": "040-123456"
 //     },
-//     { 
+//     {
 //       "id": "2",
-//       "name": "Ada Lovelace", 
+//       "name": "Ada Lovelace",
 //       "number": "39-44-5323523"
 //     },
-//     { 
+//     {
 //       "id": "3",
-//       "name": "Dan Abramov", 
+//       "name": "Dan Abramov",
 //       "number": "12-43-234345"
 //     },
-//     { 
+//     {
 //       "id": "4",
-//       "name": "Mary Poppendieck", 
+//       "name": "Mary Poppendieck",
 //       "number": "39-23-6423122"
 //     }
 // ]
@@ -86,7 +86,7 @@ app.get('/api/persons/:id',(req, response,next) => {
   // }
 })
 
-app.delete('/api/persons/:id', (request,response,next)=>{
+app.delete('/api/persons/:id', (request,response,next) => {
   const id = request.params.id
   People.findByIdAndDelete(id).then(result => {
     response.json(result)

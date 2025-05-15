@@ -28,7 +28,7 @@ if(process.argv.length < 5) {
       console.log(`${person.name} ${person.number}`)
     })
     return mongoose.connection.close()
-        
+
   }).then(() => {
     console.log('connection closed')
     process.exit(0)
